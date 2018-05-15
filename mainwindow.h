@@ -2,6 +2,8 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+
+//Includes for widgets
 #include <QWidget>
 #include <QDebug>
 #include <QPushButton>
@@ -22,7 +24,6 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
-    QWidget get_start();
 
 public slots:
     void resetGame(bool pressed);

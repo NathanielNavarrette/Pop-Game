@@ -16,6 +16,7 @@ MainWindow::MainWindow(QWidget *parent) :
     QWidget *startButton = new QPushButton("Start Game", topWidget);
     QWidget *pauseButton = new QPushButton("Pause Game", topWidget);
     QWidget *resetButton = new QPushButton("Reset Game", topWidget);
+
     topWidgetLayout->addWidget(startButton);
     topWidgetLayout->addWidget(pauseButton);
     topWidgetLayout->addWidget(resetButton);
@@ -26,8 +27,6 @@ MainWindow::MainWindow(QWidget *parent) :
     topWidgetLayout->addWidget(scoreText);
     topWidgetLayout->addWidget(new QLCDNumber(10, topWidget) );
     topWidget->setFixedHeight(50);
-
-
 
     QWidget * imgView = new QWidget;
     QHBoxLayout * imgSpace = new QHBoxLayout(imgView);
@@ -41,10 +40,7 @@ MainWindow::MainWindow(QWidget *parent) :
     m_layout->addWidget(topWidget);
     m_layout->addWidget(imgView);
 
-
-
     ui->centralWidget->setLayout(m_layout);
-    //ui->centralWidget->layout()->addWidget(new ImageView(this));
 }
 
 MainWindow::~MainWindow()
