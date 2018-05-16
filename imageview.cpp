@@ -11,7 +11,6 @@ ImageView::ImageView(QWidget *parent) :
 
     this->setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
     //connect(widgetA, SIGNAL(signal()), widgetB, SLOT(slot());
-
     connect(parent,SIGNAL(startingGame(bool)),this,SLOT(startingGame(bool)));
     connect(parent,SIGNAL(pausingGame(bool)),this,SLOT(pausingGame(bool)));
     connect(parent,SIGNAL(resettingGame(bool)),this,SLOT(resettingGame(bool)));
@@ -32,13 +31,17 @@ void ImageView::mousePressEvent(QMouseEvent * e)
                           width, height,				// width and height of the rectangle
                           QPen(Qt::blue),		// the pen used for the outline
                           QBrush(Qt::blue)); 	// the brush used for the inside of the ellipse
+        emit addingScore(QString::number(50));
     }else if(e->button() == Qt::RightButton){
         scene->clear();
     }
+
+
 }
 
 QPointF ImageView::get_rand_pos()
 {
+    /*
     QPointF rand_pos;
     QTime time = time.currentTime();
     int rand_num_array[100];
@@ -57,6 +60,7 @@ QPointF ImageView::get_rand_pos()
     rand_pos.setY(qreal(r_num % maxHeight));
 
     return rand_pos;
+    */
 
     //rand_pos.setX(qreal(qrand() % this->size().height()-10 )+10 );
     //rand_pos.setY(qreal(qrand() % this->size().width()-10 )+10 );

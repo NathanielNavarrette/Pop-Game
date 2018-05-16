@@ -27,6 +27,8 @@ public:
     explicit ImageView(QWidget *parent = 0);
 
 signals:
+    void addingScore(int);
+    void addingScore(QString);
 
 public slots:
     void mousePressEvent(QMouseEvent * e);
