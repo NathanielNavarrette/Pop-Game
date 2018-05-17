@@ -15,6 +15,7 @@
 #include <QColorDialog>
 #include <vector>
 #include <QTime>
+#include <QTimer>
 #include <QDebug>
 
 //enum Operation {noop,ellipse,rectangle,line};
@@ -28,7 +29,7 @@ public:
 
 signals:
     void addingScore(int);
-    void addingScore(QString);
+    //void addingScore(QString);
 
 public slots:
     void mousePressEvent(QMouseEvent * e);
@@ -42,6 +43,7 @@ private:
     QPointF last_position;
 
     //void startingGame(bool triggered);
-    QPointF get_rand_pos();
+    qreal get_rand_height();
+    qreal get_rand_width();
 };
 #endif // IMAGEVIEW_H

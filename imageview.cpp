@@ -31,62 +31,76 @@ void ImageView::mousePressEvent(QMouseEvent * e)
                           width, height,				// width and height of the rectangle
                           QPen(Qt::blue),		// the pen used for the outline
                           QBrush(Qt::blue)); 	// the brush used for the inside of the ellipse
-        emit addingScore(QString::number(50));
+
+        emit addingScore(50);
+
+        qDebug() << "Mouse click pos:" << "X:" << pos.x() << "  Y:" << pos.y();
     }else if(e->button() == Qt::RightButton){
         scene->clear();
     }
-
-
 }
 
-QPointF ImageView::get_rand_pos()
+qreal ImageView::get_rand_height()
 {
-    /*
-    QPointF rand_pos;
+    int max_height = scene->height()-10;
     QTime time = time.currentTime();
     int rand_num_array[100];
-    int r_num;
-    for(int i-0;i<100;i++)
+    int r_num1;
+    for(int i=0;i<100;i++)
         rand_num_array[i] = time.msec(); //random number between 0 and 999
 
-    r_num = rand_num_array[time.msec() % 100];
+    r_num1 *= qrand();
+    r_num1 = rand_num_array[time.msec() % 100];
 
-    qDebug() << "Random Number:" << r_num;
+    if(time.msec()%2 == 0)
+        r_num1 *= -1;
 
-    int maxHeight = this->size().height()-10;
-    int maxWidth  = this->size().width()-10;
+    return qreal(r_num1 % max_height);
+}
 
-    rand_pos.setX(qreal(r_num % maxHeight));
-    rand_pos.setY(qreal(r_num % maxHeight));
+qreal ImageView::get_rand_width()
+{
+    int max_width = scene->width()-10;
+    QTime time = time.currentTime();
+    int rand_num_array[100];
+    int r_num1, r_num2;
+    for(int i=0;i<100;i++)
+        rand_num_array[i] = time.msec(); //random number between 0 and 999
 
-    return rand_pos;
-    */
+    r_num1 *= qrand();
+    r_num1 = rand_num_array[time.msec() % 100];
 
-    //rand_pos.setX(qreal(qrand() % this->size().height()-10 )+10 );
-    //rand_pos.setY(qreal(qrand() % this->size().width()-10 )+10 );
+    if(time.msec()%3 == 0)
+        r_num1 *= -1;
+
+    return qreal(r_num1 % max_width);
 }
 
 
 void ImageView::startingGame(bool triggered)
 {
     qDebug() << "Starting Game ImageView";
-    QPointF pos = get_rand_pos();
+    QPointF pos;
+    pos.setX(get_rand_width());
+    QTimer *waitFor = new QTimer;
+    waitFor->setSingleShot(true);
+    waitFor->start(400);
+    pos.setY(get_rand_height());
+    for(int j=0;j<5959595;j++)
+    {
+        //do nothing
+    }
+    pos.setY(get_rand_height());
 
     qDebug() << "X:" << pos.x() << "  Y:" << pos.y();
 
-    for(int i=0;i<15;i++)
+    for(int i=0;i<1;i++)
     {
         scene->addEllipse(pos.x(),pos.y(),		//x,y position of the upper left hand corner
                           qrand()%50 + 50, qrand()%50 + 50,				// width and height of the rectangle
                           QPen(Qt::blue),		// the pen used for the outline
                           QBrush(Qt::blue)); 	// the brush used for the inside of the ellipse
-        for(int j=0;j<500000;j++)
-        {
-            //do nothing
-        }
     }
-
-
     last_position = pos;
 }
 
@@ -97,5 +111,6 @@ void ImageView::pausingGame(bool triggered)
 
 void ImageView::resettingGame(bool triggered)
 {
-    qDebug() << "Resetting Game ImageView";
+    //qDebug() << "Resetting Game ImageView";
+    scene->clear();
 }
