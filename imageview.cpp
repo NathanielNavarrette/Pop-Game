@@ -43,37 +43,25 @@ void ImageView::mousePressEvent(QMouseEvent * e)
 qreal ImageView::get_rand_height()
 {
     int max_height = scene->height()-10;
-    QTime time = time.currentTime();
-    int rand_num_array[100];
-    int r_num1;
-    for(int i=0;i<100;i++)
-        rand_num_array[i] = time.msec(); //random number between 0 and 999
+    qsrand(QDateTime::currentMSecsSinceEpoch()%5000);
+    int rand2 = qrand();
+    if(rand2 % 4 == 0)
+        rand2 *= -1;
+    rand2 %= max_height;
 
-    r_num1 *= qrand();
-    r_num1 = rand_num_array[time.msec() % 100];
-
-    if(time.msec()%2 == 0)
-        r_num1 *= -1;
-
-    return qreal(r_num1 % max_height);
+    return rand2;
 }
 
 qreal ImageView::get_rand_width()
 {
     int max_width = scene->width()-10;
-    QTime time = time.currentTime();
-    int rand_num_array[100];
-    int r_num1, r_num2;
-    for(int i=0;i<100;i++)
-        rand_num_array[i] = time.msec(); //random number between 0 and 999
+    qsrand(QDateTime::currentMSecsSinceEpoch()%5000);
+    int rand2 = qrand();
+    if(rand2 % 4 == 0)
+        rand2 *= -1;
+    rand2 %= max_width;
 
-    r_num1 *= qrand();
-    r_num1 = rand_num_array[time.msec() % 100];
-
-    if(time.msec()%3 == 0)
-        r_num1 *= -1;
-
-    return qreal(r_num1 % max_width);
+    return rand2;
 }
 
 
@@ -85,7 +73,6 @@ void ImageView::startingGame(bool triggered)
     QTimer *waitFor = new QTimer;
     waitFor->setSingleShot(true);
     waitFor->start(400);
-    pos.setY(get_rand_height());
     for(int j=0;j<5959595;j++)
     {
         //do nothing

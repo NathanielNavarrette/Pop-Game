@@ -27,12 +27,18 @@ SOURCES += \
         main.cpp \
         mainwindow.cpp \
     imageview.cpp \
-    scoreboard.cpp
+    scoreboard.cpp \
+    bubble.cpp
 
 HEADERS += \
         mainwindow.h \
     imageView.h \
-    scoreboard.h
+    scoreboard.h \
+    bubble.h
 
 FORMS += \
         mainwindow.ui
+
+DISTFILES += \
+    Pictures/231236-200.png \
+    Pictures/bubble.jpg

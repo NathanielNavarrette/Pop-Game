@@ -38,7 +38,7 @@ public slots:
     void resettingGame(bool triggered);
 
 private:
-    QGraphicsScene * scene;
+    QGraphicsScene *scene = new QGraphicsScene;
     QPointF original_position;
     QPointF last_position;
 
